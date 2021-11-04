@@ -33,6 +33,15 @@ app.post("/messages", (request, response) => {
   response.send(messageData);
 });
 
+// Delete a message, by ID
+app.delete("/messages/:messageID", (request, response) => {
+  const deleteMessageId = +request.params.messageID;
+  const dataWithoutId = messageData.filter(
+    (message) => message.id !== deleteMessageId
+  );
+  response.send(dataWithoutId);
+});
+
 app.listen(PORT, () => {
   console.log(`Server working on ${PORT}`);
 });
